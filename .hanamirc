@@ -1,0 +1,4 @@
+project=oasis
+architecture=container
+test=minitest
+template=erb

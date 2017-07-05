@@ -1,0 +1,2 @@
+module Oasis
+end

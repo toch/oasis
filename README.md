@@ -2,6 +2,8 @@
 
 Oasis is a simple Data Lake written in Ruby and Hanami
 
+[![Build Status](https://travis-ci.org/toch/oasis.svg?branch=master)](https://travis-ci.org/toch/oasis)
+
 ## Usage
 
 ```Bash

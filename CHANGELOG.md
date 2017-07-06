@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Add project to Travis CI
 * Add `README.md`, `LICENSE.md`, and `CHANGELOG.md` files.
 * Boot strap the specs (Guard, Minitest reports, helpers)
 * Init the repository

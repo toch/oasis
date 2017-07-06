@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.3
+bundler_args: --without production
+services:
+  - postgresql
+env:
+  - DATABASE_URL="postgresql://postgres@localhost/oasis_test"
+before_script:
+  - psql -c 'create database oasis_test;' -U postgres
+  - bundle exec hanami db prepare

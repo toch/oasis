@@ -24,11 +24,6 @@ group :test, :development do
   gem 'rack-test'
 end
 
-group :test do
-  gem 'minitest'
-  gem 'capybara'
-end
-
 group :production do
   # gem 'puma'
 end

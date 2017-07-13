@@ -7,6 +7,6 @@ class MiniTest::Spec
   include Rack::Test::Methods
 
   def app
-    Hanami::Container.new
+    Hanami.app
   end
 end

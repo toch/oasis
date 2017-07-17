@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Add badges for the changelog and the license in the `README.md` file.
 * Use UUID as primary key for Blobs (breaking change, please drop db before)
 * Add a Utils helper to check UUID format
 * Add Blob entities to represent data and metadata

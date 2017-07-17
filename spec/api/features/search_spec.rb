@@ -26,7 +26,7 @@ describe 'Searching Data' do
   end
 
   describe 'when oasis contains some blob' do
-    let(:json_regexp) {'{"id":[0-9]+,"format":"csv","created_at":".*","updated_at":".*"}'}
+    let(:json_regexp) {'{"id":"' + Uuid.regular_expression.to_s + '","format":"csv","created_at":".*","updated_at":".*"}'}
 
     before do
       repository.create(Blob.new(format: 'csv'))

@@ -26,15 +26,27 @@ describe 'Searching Data' do
   end
 
   describe 'when oasis contains some blob' do
-    let(:json_regexp) {'{"id":"' + Uuid.regular_expression.to_s + '","format":"csv","created_at":".*","updated_at":".*","tags":{"source":"test"}}'}
+    let(:json_regexp_csv) {'{"id":"' + Uuid.regular_expression.to_s + '","format":"csv","created_at":".*","updated_at":".*","tags":{"source":"test1"}}'}
+    let(:json_regexp_tsv) {'{"id":"' + Uuid.regular_expression.to_s + '","format":"tsv","created_at":".*","updated_at":".*","tags":{"source":"test2"}}'}
 
     before do
-      repository.create(Blob.new(format: 'csv', tags: { source: "test"}))
-      repository.create(Blob.new(format: 'csv', tags: { source: "test"}))
+      repository.create(Blob.new(format: 'csv', tags: { source: 'test1'}))
+      repository.create(Blob.new(format: 'tsv', tags: { source: 'test2'}))
     end
     it 'returns a page of the data without criteria' do
       get '/data'
-      expect (last_response.body).must_match /\[#{json_regexp},#{json_regexp}\]/
+      expect (last_response.body).must_match /#{json_regexp_csv}/
+      expect (last_response.body).must_match /#{json_regexp_tsv}/
+    end
+
+    it 'returns a page of the data matching the format requested' do
+      get 'data', format: 'csv'
+      expect (last_response.body).must_match /\[#{json_regexp_csv}\]/
+    end
+
+    it 'returns a page of data matching the tag requested' do
+      get 'data', tags: {source: 'test1'}
+      expect (last_response.body).must_match /#{json_regexp_csv}/
     end
   end
 end

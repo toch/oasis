@@ -3,7 +3,8 @@
 Oasis is a simple Data Lake written in Ruby and Hanami
 
 [![Build Status](https://travis-ci.org/toch/oasis.svg?branch=master)](https://travis-ci.org/toch/oasis)
-[![version][https://img.shields.io/badge/version-unreleased-blue.svg]][./CHANGELOG.md] [![license][https://img.shields.io/badge/license-MIT-blue.svg]][./LICENSE.md]
+[![version](https://img.shields.io/badge/version-unreleased-blue.svg)](./CHANGELOG.md)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
 ## Requirements
 

@@ -26,11 +26,11 @@ describe 'Searching Data' do
   end
 
   describe 'when oasis contains some blob' do
-    let(:json_regexp) {'{"id":"' + Uuid.regular_expression.to_s + '","format":"csv","created_at":".*","updated_at":".*"}'}
+    let(:json_regexp) {'{"id":"' + Uuid.regular_expression.to_s + '","format":"csv","created_at":".*","updated_at":".*","tags":{"source":"test"}}'}
 
     before do
-      repository.create(Blob.new(format: 'csv'))
-      repository.create(Blob.new(format: 'csv'))
+      repository.create(Blob.new(format: 'csv', tags: { source: "test"}))
+      repository.create(Blob.new(format: 'csv', tags: { source: "test"}))
     end
     it 'returns a page of the data without criteria' do
       get '/data'

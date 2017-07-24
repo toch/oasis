@@ -1,10 +1,10 @@
 module Api::Views::Data
-  class Search
+  class Fetch
     include Api::View
     layout false
 
     def render
-      raw JSON.dump(blobs.map{ |blob| blob.to_h })
+      raw JSON.dump({uri: blob.uri})
     end
   end
 end

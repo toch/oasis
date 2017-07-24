@@ -3,4 +3,5 @@
 #
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
+get '/data/:id', to: 'data#fetch'
 get '/data', to: 'data#search'

@@ -4,7 +4,7 @@ module Api::Views::Data
     layout false
 
     def render
-      raw JSON.dump(blobs.map{ |blob| blob.to_h })
+      raw JSON.dump(blobs.map{ |blob| blob.to_h.select{ |_, v| v } })
     end
   end
 end

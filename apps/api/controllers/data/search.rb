@@ -2,18 +2,17 @@ module Api::Controllers::Data
   class Search
     include Api::Action
 
+    params do
+      optional(:format).maybe(:str?)
+      optional(:tags).maybe(:hash?)
+    end
+
     expose :blobs
 
     def call(params)
+      return [] unless params.valid?
       repository = BlobRepository.new
-      @blobs = []
-      if params[:format]
-        @blobs = repository.by_format(params[:format])
-      elsif params[:tags]
-        @blobs = repository.by_tags(params[:tags])
-      else
-        @blobs = repository.all
-      end
+      @blobs = repository.find_by(params)
     end
   end
 end

@@ -48,5 +48,10 @@ describe 'Searching Data' do
       get 'data', tags: {source: 'test1'}
       expect (last_response.body).must_match /#{json_regexp_csv}/
     end
+
+    it 'returns a page of the data matching the format and the tag requested' do
+      get 'data', format: 'tsv', tags: {source: 'test1'}
+      expect (last_response.body).must_equal "[]"
+    end
   end
 end

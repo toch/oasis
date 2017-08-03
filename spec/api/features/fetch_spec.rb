@@ -1,5 +1,12 @@
 require 'api_helper'
 require 'fixtures_helper'
+require 'aws-sdk'
+
+FakeS3Object = Struct.new(:stubbed_url) do
+  def presigned_url(_, _)
+    stubbed_url
+  end
+end
 
 describe 'Searching Data' do
   let(:repository) { BlobRepository.new }
@@ -16,21 +23,30 @@ describe 'Searching Data' do
   end
 
   describe 'when oasis contains some blob' do
-    let(:uri) { "https://873895678023687646.s3.amazonaws.com/312986794569186" }
+    let(:s3_object_uri) { "https://873895678023687646.s3.amazonaws.com/312986794569186" }
     let(:blob) {
-      repository.create(Blob.new(format: 'csv', tags: { source: 'test1'}, uri: uri))
+      repository.create(Blob.new(format: 'csv', tags: { source: 'test1'}))
     }
     let(:uuid) { blob.id }
+
+    before do
+      Aws.config[:s3] = {
+        stub_responses: {
+          get_object: FakeS3Object.new(s3_object_uri)
+        }
+      }
+    end
 
     describe 'when the UUID corresponds to an existing blob' do
       it 'is ok' do
         get "/data/#{uuid}"
-        expect (last_response).must_be :ok?
+        expect(last_response).must_be :redirect?
       end
 
       it 'returns the direct URI to download it' do
         get "/data/#{uuid}"
-        expect (last_response.body).must_match /https:\/\/[a-z0-9][a-z0-9-\.]*\.s3\.amazonaws\.com\/[a-z0-9][a-zA-Z0-9]*/
+        follow_redirect!
+        expect (last_request.url).must_equal s3_object_uri
       end
     end
 

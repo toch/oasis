@@ -7,6 +7,9 @@ module Api::Controllers::Data
     def call(params)
       @blob = BlobRepository.new.find(params[:id])
       halt 404, "The data is not found" unless @blob
+
+      url = GetUrlForBlob.call(@blob)
+      redirect_to url
     end
 
     # http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-authentication-HTTPPOST.html

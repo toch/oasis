@@ -5,6 +5,7 @@ gem 'hanami',       '~> 1.0'
 gem 'hanami-model', '~> 1.0'
 
 gem 'pg'
+gem 'aws-sdk'
 
 group :development do
   # Code reloading

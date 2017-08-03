@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Fetch blob and redirect to their URI storage, i.e. a AWS S3 object
 * Allow search data / blobs according to their format or tags
 * Add badges for the changelog and the license in the `README.md` file.
 * Use UUID as primary key for Blobs (breaking change, please drop db before)

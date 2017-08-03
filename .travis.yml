@@ -9,7 +9,12 @@ bundler_args: --without production
 services:
   - postgresql
 env:
-  - DATABASE_URL="postgresql://postgres@localhost/oasis_test"
+  global:
+    - DATABASE_URL="postgresql://postgres@localhost/oasis_test"
+    - AWS_ACCESS_KEY_ID="test_access_id"
+    - AWS_SECRET_ACCESS_KEY="test_access_key"
+    - AWS_S3_BUCKET="test_bucket"
+    - AWS_REGION="here"
 before_script:
   - psql -c 'create database oasis_test;' -U postgres
   - bundle exec hanami db prepare

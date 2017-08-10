@@ -50,6 +50,13 @@ describe 'Searching Data' do
       end
     end
 
+    describe 'when the id is an invalid format' do
+      it 'is forbidden' do
+        get 'data/1'
+        expect(last_response).must_be :forbidden?
+      end
+    end
+
   end
 
 end

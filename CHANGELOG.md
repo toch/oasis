@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Allow to index data
 * Remove URI of Blobs as it is calculated
 * Fetch blob and redirect to their URI storage, i.e. a AWS S3 object
 * Allow search data / blobs according to their format or tags

@@ -1,8 +1,8 @@
 require 'aws-sdk'
 
 class GetUrlForBlob
-  def self.call(blob)
-    new(blob).send(:generate_url)
+  def self.call(blob, method=:download)
+    new(blob).send(:generate_url, method == :upload ? :put : :get)
   end
 
   def self.config(s3_bucket)
@@ -17,8 +17,8 @@ class GetUrlForBlob
     @object = client.get_object(bucket: @@s3_bucket, key: blob.id)
   end
 
-  def generate_url
-    object.presigned_url(:get, expires_in: 60*10)
+  def generate_url(method=:get)
+    object.presigned_url(method, expires_in: 60*10)
   end
 
   def client

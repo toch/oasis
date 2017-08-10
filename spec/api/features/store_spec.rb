@@ -8,16 +8,17 @@ FakeS3Object = Struct.new(:stubbed_url) do
   end
 end
 
-describe 'Fetching Data' do
+describe 'Storing Data' do
   let(:repository) { BlobRepository.new }
+  let(:content) { 'content of the blob'}
   before do
     repository.clear
-    header 'Content-Type', 'application/vnd.api+json'
+    header 'Content-Type', 'text/plain'
   end
 
   describe 'when oasis is empty' do
     it 'is not found' do
-      get '/data/f337ee46-1f2c-4513-b860-699d658adc1f'
+      put '/data/f337ee46-1f2c-4513-b860-699d658adc1f', content
       expect (last_response).must_be :not_found?
     end
   end
@@ -39,24 +40,24 @@ describe 'Fetching Data' do
 
     describe 'when the UUID corresponds to an existing blob' do
       it 'is ok' do
-        get "/data/#{uuid}"
+        put "/data/#{uuid}", content
         expect(last_response).must_be :redirect?
+        expect(last_response.status).must_equal 307
       end
 
-      it 'returns the direct URI to download it' do
-        get "/data/#{uuid}"
+      it 'returns the direct URI to upload to it' do
+        put "/data/#{uuid}", content
         follow_redirect!
         expect (last_request.url).must_equal s3_object_uri
+        expect (last_request.body.string).must_equal content
       end
     end
 
     describe 'when the id is an invalid format' do
       it 'is forbidden' do
-        get 'data/1'
+        put 'data/1', content
         expect(last_response).must_be :forbidden?
       end
     end
-
   end
-
 end

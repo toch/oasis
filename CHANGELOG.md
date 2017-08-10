@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Allow to store data
 * Validate the fetch request query
 * Allow to index data
 * Remove URI of Blobs as it is calculated

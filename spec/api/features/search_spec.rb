@@ -1,7 +1,7 @@
 require 'api_helper'
 require 'fixtures_helper'
 
-describe 'Fetching Data' do
+describe 'Searching Data' do
   let(:repository) { BlobRepository.new }
   before do
     repository.clear

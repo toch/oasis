@@ -1,7 +1,6 @@
 require 'api_helper'
 require 'fixtures_helper'
 require 'aws-sdk'
-require 'ostruct'
 
 FakeS3Object = Struct.new(:stubbed_url) do
   def presigned_url(_, _)

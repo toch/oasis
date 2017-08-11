@@ -1,6 +1,7 @@
 require 'api_helper'
 require 'fixtures_helper'
 require 'aws-sdk'
+require 'ostruct'
 
 FakeS3Object = Struct.new(:stubbed_url) do
   def presigned_url(_, _)
@@ -31,11 +32,11 @@ describe 'Storing Data' do
     let(:uuid) { blob.id }
 
     before do
-      Aws.config[:s3] = {
-        stub_responses: {
-          get_object: FakeS3Object.new(s3_object_uri)
-        }
-      }
+      Aws.config[:s3] = {stub_responses: true}
+      uri = s3_object_uri
+      GetUrlForBlob.send(:define_method, :get_s3_object) do |_|
+        FakeS3Object.new(uri)
+      end
     end
 
     describe 'when the UUID corresponds to an existing blob' do

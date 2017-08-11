@@ -14,15 +14,15 @@ class GetUrlForBlob
   attr_reader :object
 
   def initialize(blob)
-    s3 = Aws::S3::Resource.new(client: client)
-    @object = s3.bucket(@@s3_bucket).object(blob.id)
+    @object = get_s3_object(blob.id)
   end
 
   def generate_url(method=:get)
     object.presigned_url(method, expires_in: 60*10)
   end
 
-  def client
-    @client ||= Aws::S3::Client.new()
+  def get_s3_object(id)
+    @s3_resource ||= Aws::S3::Resource.new(client: Aws::S3::Client.new())
+    @s3_resource.bucket(@@s3_bucket).object(id)
   end
 end

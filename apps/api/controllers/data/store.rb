@@ -12,7 +12,7 @@ module Api::Controllers::Data
       @blob = BlobRepository.new.find(params[:id])
       halt 404, "The data is not found" unless @blob
 
-      url = GetUrlForBlob.call(@blob)
+      url = GetUrlForBlob.call(@blob, :upload)
       redirect_to url, status: 307
     end
   end

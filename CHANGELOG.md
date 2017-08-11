@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Fix bug to set permission when creating presigned url for S3 object
 * Fix bug when creating presigned url for absent S3 object
 * Set up Puma and Heroku for deployment
 * Use ruby 2.4

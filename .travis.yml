@@ -4,7 +4,7 @@ addons:
   postgresql: "9.5"
 language: ruby
 rvm:
-  - 2.3
+  - 2.4
 bundler_args: --without production
 services:
   - postgresql

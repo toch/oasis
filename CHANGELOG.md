@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Fix bug when creating presigned url for absent S3 object
+* Set up Puma and Heroku for deployment
+* Use ruby 2.4
+* Add project to Coverall
 * Allow to store data
 * Validate the fetch request query
 * Allow to index data

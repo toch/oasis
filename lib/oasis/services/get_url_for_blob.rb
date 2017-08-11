@@ -14,7 +14,8 @@ class GetUrlForBlob
   attr_reader :object
 
   def initialize(blob)
-    @object = client.get_object(bucket: @@s3_bucket, key: blob.id)
+    s3 = Aws::S3::Resource.new(client: client)
+    @object = s3.bucket(@@s3_bucket).object(blob.id)
   end
 
   def generate_url(method=:get)

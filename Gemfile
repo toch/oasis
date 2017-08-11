@@ -23,6 +23,7 @@ group :test, :development do
   gem 'minitest-reporters-json_reporter'
   gem 'capybara'
   gem 'rack-test'
+  gem 'coveralls', require: false
 end
 
 group :production do

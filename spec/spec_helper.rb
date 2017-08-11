@@ -5,4 +5,7 @@ require_relative '../config/environment'
 require 'minitest/autorun'
 require 'minitest_reporters_helper'
 
+require 'coveralls'
+Coveralls.wear!
+
 Hanami.boot

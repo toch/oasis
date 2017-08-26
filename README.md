@@ -1,4 +1,4 @@
-# Oasis
+# Oasis 🌴
 
 Oasis is a simple Data Lake written in Ruby and Hanami
 

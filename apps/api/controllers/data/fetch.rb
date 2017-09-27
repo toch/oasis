@@ -16,11 +16,5 @@ module Api::Controllers::Data
       url = GetUrlForBlob.call(@blob)
       redirect_to url
     end
-
-    # http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-authentication-HTTPPOST.html
-    # http://docs.aws.amazon.com/AmazonS3/latest/dev/UploadObjectPreSignedURLRubySDK.html#UploadObjectPreSignedURLRubySDKV2
-    # https://leonid.shevtsov.me/post/demystifying-s3-browser-upload/
-    # https://github.com/codeartists/codeartists-com/blob/master/How-to-upload-files-to-Amazon-S3-from-client-side-web-app.md
-    # http://docs.aws.amazon.com/sdk-for-ruby/v2/developer-guide/stubbing.html
   end
 end
